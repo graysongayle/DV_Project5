@@ -4,7 +4,8 @@ require(ggplot2)
 
 
 
-file_path <- "states.csv"
+
+file_path <- "states_Excel.csv"
 
 df <- read.csv(file_path, stringsAsFactors = FALSE)
 
@@ -13,7 +14,7 @@ names(df) <- gsub("\\.+", "_", names(df))
 names(df)
 # str(df) # Uncomment this and  run just the lines to here to get column types to use for getting the list of measures.
 
-#measures <- c("Customer_ID", "Order_ID", "Postal_Code", "Row_ID", "Discount", "Gross_Profit_Ratio" , "Number_of_Records", "Order_Quantity", "Product_Base_Margin", "Profit", "Sales", "Shipping_Cost", "Unit_Price")
+measures <- c("Income_2014", "Income_2013", "Income_2012", "Income_2011", "Income_2010")
 #measures <- NA # Do this if there are no measures.
 
 # Get rid of special characters in each column.
