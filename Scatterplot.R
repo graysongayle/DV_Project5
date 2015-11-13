@@ -1,3 +1,5 @@
+
+
 require("jsonlite")
 require("RCurl")
 require(ggplot2)
@@ -6,9 +8,11 @@ require(dplyr)
 # The following is equivalent to "04 Blending 2 Data Sources.twb"
 
 df <- data.frame(fromJSON(getURL(URLencode(gsub("\n", " ", 'skipper.cs.utexas.edu:5001/rest/native/?query=
-                                                """select b.state as measure_names, avg(b.raw_value) || \\\' \\\' || avg(a.sales) as measure_values
-                                                   from superstore a inner join countyhealth b on a.state_or_province = b.state
-                                                   group by state
+                                                """
+                                                select  b.measure_name as measure_names, a.profit || \\\' \\\' || b.raw_value as measure_values
+                                                from superstore a inner join countyhealth b on a.state_or_province = b.state
+                                                where b.measure_name = \\\'Violent crime rate\\\' and a.profit > \\\'0 \\\'
+                                                order by a.profit desc
                                                 """
                                                 ')), httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_gmg954', PASS='orcl_gmg954', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE))); 
 
@@ -37,7 +41,6 @@ ggplot() +
         geom_params=list(colour="black", hjust=-0.5), 
         position=position_identity()) 
 
-        
-        
-        
-    
+
+
+
