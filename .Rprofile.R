@@ -10,7 +10,7 @@ require("RCurl")
 
 require("reshape2")
 
-require("rstudio")
+require("rstudioapi")
 
 require("tableplot")
 

@@ -8,16 +8,55 @@ Date: Due November 13, 2015 11:59 pm
 ---
 
 ![](http://www.spikeybits.com/wp-content/uploads/2015/02/Money.jpeg)
-
-First We created a **.Rprofile.R ** document at the same level as our R script to run the needed packages. This document includes the packages required for the project.
-Below is the path to the .Rprofile document, and shows the loaded packages:
-
-```{r}
-source("../.Rprofile.R", echo = FALSE)
-``` 
-
-DATA Summary
+#*1st STEP*#
+First We created a **.Rprofile.R ** document at the same level as our R script to run the needed packages. This document includes the packages required for the project. First We created a **.Rprofile.R ** document at the same level as our R script to run the needed packages. This document includes the packages required for the project. Next we loaded our csv files into Oracle using a modified verstoin of R_ETL.R
 
 ```{r}
-  superstore <-read.csv("../01 Data/County_Health_Rankings.csv")
+source("../01 Data/R_ETL.R", echo = FALSE)
 ``` 
+
+
+#*2nd STEP*#
+We then found a second data set, county health rankings, to blend with our first data set superstore. Below is the summary of each data set.
+
+##DATA Summary#
+The first data set shows health rankings per state in each state county. These health rankings were collected during a particular year span and were given a raw value amongst the various measure names. Measure names in the case are the different types of measured categories such as violent crime, premature death, diabetic screening, etc. 
+```{r}
+  health <-read.csv("../01 Data/County_Health_Rankings.csv")
+  head(health)
+  summary(health)
+``` 
+
+The second data set was a data set previously used in the the first tableau project. It shows profits, shipping cost and other various measures. Each of these measures can be matched to a specific state, region, city or postal code. 
+```{r}
+  superstore <-read.csv("../01 Data/Superstore.reformatted.csv")
+  head(superstore)
+  summary(superstore)
+``` 
+
+The two above data sets were blended on the basis of state. 
+
+#*3rd Step*#
+We created useful images in Tableau
+#Data Visualizations#
+The follwoing data visualizations were created in tableau and R. An inner join was implemented on countyhealth and superstore state values.
+
+#Scatter Plot: Violoent crime rates vs Profit#
+This plot indicates a trend between violent crime rate and income.
+```{r}
+  source("../Barchart.R",echo = TRUE)
+``` 
+
+#Crosstab with KPI: Meaure names and state#
+This visualization was aimed to identify the values of adult obesity, diabetic screening, mammography screening and physical activity according to state provinces within Texas. The KPI implemented set the maximum value at 100,000.
+
+```{r}
+  source("../Crosstab.R", echo = TRUE)
+``` 
+
+#Bar Chart: Sales vs Average Raw Value#
+This plot shows state raw values. Here we see that Oregon, Massachusetts, South Dakota and California have high raw values across all measured values.
+```{r}
+  source("../Barchart.R", echo = TRUE)
+``` 
+'
