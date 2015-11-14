@@ -5,7 +5,7 @@ require(ggplot2)
 
 
 
-file_path <- "Countries.csv"
+file_path <- "County_Health_Rankings."
 
 df <- read.csv(file_path, stringsAsFactors = FALSE)
 
@@ -14,7 +14,7 @@ names(df) <- gsub("\\.+", "_", names(df))
 names(df)
 # str(df) # Uncomment this and  run just the lines to here to get column types to use for getting the list of measures.
 
-#measures <- c("Income_2014", "Income_2013", "Income_2012", "Income_2011", "Income_2010")
+#measures <- c("State", "County", "Year_Span", "Measure_name", "Raw_value")
 #measures <- NA # Do this if there are no measures.
 
 # Get rid of special characters in each column.

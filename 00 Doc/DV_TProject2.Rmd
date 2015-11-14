@@ -6,18 +6,19 @@ output:
 Author: "Grayson Gayle, Madeline Nash, David Schluckebier"
 Date: Due November 13, 2015 11:59 pm
 ---
-
 ![](http://www.spikeybits.com/wp-content/uploads/2015/02/Money.jpeg)
 #*1st STEP*
 First We created a **.Rprofile.R ** document at the same level as our R script to run the needed packages. This document includes the packages required for the project. First We created a **.Rprofile.R ** document at the same level as our R script to run the needed packages. This document includes the packages required for the project. Next we loaded our csv files into Oracle using a modified verstoin of R_ETL.R
 
-```{r}
+```{r, eval=FALSE}
 require(tidyr)
 require(dplyr)
 require(ggplot2)
 
 
-file_path <- "Countries.csv"
+
+
+file_path <- "County_Health_Rankings."
 
 df <- read.csv(file_path, stringsAsFactors = FALSE)
 
@@ -26,7 +27,7 @@ names(df) <- gsub("\\.+", "_", names(df))
 names(df)
 # str(df) # Uncomment this and  run just the lines to here to get column types to use for getting the list of measures.
 
-#measures <- c("Income_2014", "Income_2013", "Income_2012", "Income_2011", "Income_2010")
+#measures <- c("State", "County", "Year_Span", "Measure_name", "Raw_value")
 #measures <- NA # Do this if there are no measures.
 
 # Get rid of special characters in each column.
@@ -80,8 +81,6 @@ if( length(measures) > 1 || ! is.na(measures)) {
 }
 sql <- paste(sql, ");")
 cat(sql)
-
-
 ``` 
 
 
@@ -111,11 +110,11 @@ The follwoing data visualizations were created in tableau and R. An inner join w
 
 #Scatter Plot: Violoent crime rates vs Profit
 This plot indicates a trend between violent crime rate and income.
- ![](./scatterplot.png)
+![](Scatterplot.png)
 #Crosstab with KPI: Meaure names and state
 This visualization was aimed to identify the values of adult obesity, diabetic screening, mammography screening and physical activity according to state provinces within Texas. The KPI implemented set the maximum value at 100,000.
-  ![](./Crosstab.png)
+![](Crosstab.png)
 #Bar Chart: Sales vs Average Raw Value
 This plot shows state raw values. Here we see that Oregon, Massachusetts, South Dakota and California have high raw values across all measured values.
-  ![](./Barchart.png)
+![](Barchart.png)
 
