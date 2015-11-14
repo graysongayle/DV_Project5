@@ -1,22 +1,18 @@
 ---
 title: DV_TProject2 
-output: 
-  html_document:
-    theme: cosmo
+output: html_document
 Author: "Grayson Gayle, Madeline Nash, David Schluckebier"
 Date: Due November 13, 2015 11:59 pm
 ---
 ![](http://www.spikeybits.com/wp-content/uploads/2015/02/Money.jpeg)
-#*1st STEP*
-First We created a **.Rprofile.R ** document at the same level as our R script to run the needed packages. This document includes the packages required for the project. First We created a **.Rprofile.R ** document at the same level as our R script to run the needed packages. This document includes the packages required for the project. Next we loaded our csv files into Oracle using a modified verstoin of R_ETL.R
+
+##1st STEP
+*First We created a **.Rprofile.R ** document at the same level as our R script to run the needed packages. This document includes the packages required for the project. First We created a **.Rprofile.R ** document at the same level as our R script to run the needed packages. This document includes the packages required for the project. Next we loaded our csv files into Oracle using a modified verstoin of R_ETL.R*
 
 ```{r, eval=FALSE}
 require(tidyr)
 require(dplyr)
 require(ggplot2)
-
-
-
 
 file_path <- "County_Health_Rankings."
 
@@ -84,37 +80,35 @@ cat(sql)
 ``` 
 
 
-#*2nd STEP*#
-We then found a second data set, county health rankings, to blend with our first data set superstore. Below is the summary of each data set.
+##2nd STEP
+*We then found a second data set, county health rankings, to blend with our first data set superstore. Below is the summary of each data set.*
 
-##DATA Summary#
-The first data set shows health rankings per state in each state county. These health rankings were collected during a particular year span and were given a raw value amongst the various measure names. Measure names in the case are the different types of measured categories such as violent crime, premature death, diabetic screening, etc. 
+####DATA Summary for County Health Rankings and Superstore csv files
+*The first data set shows health rankings per state in each state county. These health rankings were collected during a particular year span and were given a raw value amongst the various measure names. Measure names in the case are the different types of measured categories such as violent crime, premature death, diabetic screening, etc. *
 ```{r}
   health <-read.csv("../01 Data/County_Health_Rankings.csv")
   head(health)
   summary(health)
 ``` 
 
-The second data set was a data set previously used in the the first tableau project. It shows profits, shipping cost and other various measures. Each of these measures can be matched to a specific state, region, city or postal code. 
+*The second data set was a data set previously used in the the first tableau project. It shows profits, shipping cost and other various measures. Each of these measures can be matched to a specific state, region, city or postal code.* 
 ```{r}
   superstore <-read.csv("../01 Data/Superstore.reformatted.csv")
   head(superstore)
   summary(superstore)
 ``` 
 
-#3rd Step
-We created useful images in Tableau
+##3rd Step: Data Visualizations
+*The follwoing data visualizations were created in tableau and R. An inner join was implemented on countyhealth and superstore state values.*
 
-#Data Visualizations#
-The follwoing data visualizations were created in tableau and R. An inner join was implemented on countyhealth and superstore state values.
-
-#Scatter Plot: Violoent crime rates vs Profit
-This plot indicates a trend between violent crime rate and income.
+#Scatter Plot: Violent crime rates vs. Profit
+*This plot indicates a trend between violent crime rate and income. This image did not fully visualize our data because R could not handle mroe than 100,000 rows of data so the entire image could not be rendered.*
 ![](Scatterplot.png)
-#Crosstab with KPI: Meaure names and state
-This visualization was aimed to identify the values of adult obesity, diabetic screening, mammography screening and physical activity according to state provinces within Texas. The KPI implemented set the maximum value at 100,000.
-![](Crosstab.png)
-#Bar Chart: Sales vs Average Raw Value
-This plot shows state raw values. Here we see that Oregon, Massachusetts, South Dakota and California have high raw values across all measured values.
-![](Barchart.png)
 
+#Crosstab with KPI: State vs Measure Names
+*This visualization was aimed to identify the values of adult obesity, diabetic screening, mammography screening and physical activity according to state provinces within Texas. The KPI implemented set the maximum value at 100,000.*
+![](Crosstab.png)
+
+#Bar Chart: Sales vs Average Raw Value
+*This plot shows state raw values. Here we see that Oregon, Massachusetts, South Dakota and California have high raw values across all measured values.*
+![](Barchart.png)
